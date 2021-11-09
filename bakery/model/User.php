@@ -24,35 +24,27 @@ class User {
     $this->conn = $db;
   }
 
-
-
-
-
-  // Get User infos
-  public function read() {
-    $SELECT_ALL = 'SELECT u.id, u.user_id, u.user_name, u.pwd, u.email, p.pay, p.date 
-          FROM user u LEFT JOIN payment p ON u.id=p.id';
-    // Prepare statement
-    $stmt = $this->conn->prepare(UserSql::$SELECT_ALL);
-    // Execute query
-    $stmt->execute();
-    
-    return $stmt;
-  }
   
   // Get single User info
-  public function read_single() {  
+  public function select_one_user_id() {  
     $stmt = $this->conn->prepare(UserSql::$SELECT_ONE);
-    $stmt->bindParam(1, $this->id);     // Bind ID
-    $stmt->execute();
-
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $this->id = $row['id'];
-    $this->user_id = $row['user_id'];
-    $this->user_name = $row['user_name'];
-    $this->email = $row['email'];
-    $this->pay = $row['pay'];
-    $this->date = $row['date'];
+    $stmt->bindParam(':user_id', $this->user_id);     // Bind ID
+    if ($stmt->execute()){
+      if ($stmt->rowCount() == 0){
+        return 0;
+      }
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $this->id = $row['id'];
+      $this->user_id = $row['user_id'];
+      $this->pwd = $row['pwd'];
+      $this->user_name = $row['user_name'];
+      $this->email = $row['email'];
+      $this->pay = $row['pay'];
+      $this->date = $row['date'];
+      return true;
+    }
+    echo "Error: ".$stmt->error;
+    return False;
   }
 
 
@@ -65,16 +57,6 @@ class User {
     $this->user_name = htmlspecialchars(strip_tags($this->user_name));
     $this->email = htmlspecialchars(strip_tags($this->email));
     $this->pwd = htmlspecialchars(strip_tags($this->pwd));
-
-    // // Check duplicate user
-    // $stmt = $this->conn->prepare(UserSql::$SELECT_CHECK_DUP);
-    // $stmt->bindParam(':user_id', $this->user_id); // Bind ID
-    // if ($stmt->execute()) {
-    //   if( $stmt->rowCount() === 1) 
-    //       echo "중복된 아이디 입니다." ;
-    //   return -1;
-    // }
-
     
     $stmt = $this->conn->prepare(UserSql::$INSERT_USER);
     // Bind data    
