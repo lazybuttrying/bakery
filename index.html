@@ -5,22 +5,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Bakery</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 
 <body>
-  <form action="./bakery/back/login.php" method="post">
+  <form id="loginForm" method="post">
+    <span id="error_msg"></span><br>
     <label for="id"> ID </label>
     <input type="text" name="id" /> <br>
     <label for="pw"> Password </label>
     <input type="text" name="pw" /> <br>
-
-    <input type="submit" value="Sign In" name="submit">
+    <button type="submit" value="Sign In" onclick="login()"> Login </button>
   </form>
 
   <br> <br> <br>
 
-  <form action="./bakery/back/signup.php" method="post">
+  <form id="createUserForm" method="post">
+    <span id="error_msg"></span><br>
     <label for="id"> ID </label>
     <input type="text" name="id" /> <br>
     <label for="pw"> Password </label>
@@ -31,12 +35,74 @@
     <input type="text" name="name" /><br>
     <label for="email"> Email </label>
     <input type="text" name="email" /> <br>
-
-    <input type="submit" value="Sign Up" name="submit">
+    <button type="submit" value="Sign Up" onclick="createUser()"> Sign up </button>
   </form>
 
   <br> <br> <br>
 
 </body>
+
+<script>
+  //로그인
+  $('#loginForm').bind('submit', (e) => {
+    e.preventDefault();
+  });
+
+  function login() {
+    $.ajax({
+      url: "/bakery/api/user/login.php",
+      type: "POST",
+      data: $('#loginForm').serialize(),
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+      },
+      success: function (msg) {
+        try {
+          msg = JSON.parse(msg);
+          window.location.replace(msg["redirect_to"]);
+        } catch {
+          $('#loginForm #error_msg').text(msg);
+        }
+      },
+      error: function (e) {
+        console.log(e);
+      }
+    })
+  }
+
+  //회원가입
+  $('#createUserForm').bind('submit', (e) => {
+    e.preventDefault();
+  });
+
+
+  function createUser() {
+    $.ajax({
+      url: "/bakery/api/user/create.php",
+      type: "POST",
+      data: $('#createUserForm').serialize(),
+      processData: false,
+      contentType: false,
+      cache: false,
+      timeout: 600000,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+      },
+      success: function (msg) {
+        console.log(msg);
+        $('#createUserForm #error_msg').text(msg);
+      },
+      error: function (e) {
+        console.log(e);
+      }
+    })
+  }
+
+</script>
+
 
 </html>
