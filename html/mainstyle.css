@@ -1,0 +1,74 @@
+
+  a { text-decoration: none; }
+  a:visited { text-decoration: none; }
+  a:hover { text-decoration: none; }
+  a:focus { text-decoration: none; }
+  a:hover, a:active { text-decoration: none; }
+
+.header {
+    padding: 80px; /* some padding */
+    text-align: center; /* center the text */
+    background: #9e6f22; /* background */
+    color: white; /* white text color */
+    text-decoration: none;
+  }
+  
+.header h1 {
+    font-size: 40px;
+    text-decoration: none;
+    color:white;
+}
+
+.header a{
+  color:white;
+}
+
+  .navbar {
+    overflow: hidden; /* Hide overflow */
+  }
+  
+  /* Style the navigation bar links */
+  .navbar a {
+    float: right; /* Make sure that the links stay side-by-side */
+    display: block; /* Change the display to block, for responsive reasons (see below) */
+    color: rgb(8, 0, 0); /* White text color */
+    text-align: center; /* Center the text */
+    padding: 14px 20px; /* Add some padding */
+    text-decoration: none; /* Remove underline */
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Column container */
+  .list {
+    text-decoration: none;
+    list-style : none;
+    font-size : 24px;
+  }
+  
+  .list a {
+    text-decoration: none;
+    list-style : none;
+    font-size : 24px;
+    color : black;
+  }
+
+  .datasection {
+    flex: 30%; /* Set the width of the sidebar */
+    background-color: #f1f1f1; /* Grey background color */
+    padding: 20px; /* Some padding */
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .servicelist {
+    flex: 70%; /* Set the width of the main content */
+    background-color: white; /* White background color */
+    padding: 20px; /* Some padding */
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  
