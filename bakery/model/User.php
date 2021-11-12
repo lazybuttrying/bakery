@@ -9,14 +9,12 @@ class User {
   private $table = 'user';
 
   // User Properties
-  public $id;
   public $user_id;
   public $user_name;
   public $pwd;
   public $email;
-  public $pay;
-  public $date;
-  public $count;
+  public $auth;
+  public $view_count;
 
   
   // Constructor with DB
@@ -34,13 +32,12 @@ class User {
         return 0;
       }
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
-      $this->id = $row['id'];
       $this->user_id = $row['user_id'];
       $this->pwd = $row['pwd'];
       $this->user_name = $row['user_name'];
       $this->email = $row['email'];
-      $this->pay = $row['pay'];
-      $this->date = $row['date'];
+      $this->auth = $row['auth'];
+      $this->view_count = $row['view_count'];
       return true;
     }
     echo "Error: ".$stmt->error;
@@ -67,34 +64,23 @@ class User {
 
     // Execute query 
     if ($stmt->execute()){
-      return $this->conn->lastInsertId();
-      //return true;
+      //return $this->conn->lastInsertId();
+      return true;
     }
     echo "Error: ".$stmt->error;
     return false;
   }
 
   // Create payment
-  public function create_payment($last_id) {
+  public function create_payment() {
       $stmt = $this->conn->prepare(UserSql::$INSERT_PAYMENT);
-      $stmt->bindParam(':id', $last_id);
+      $stmt->bindParam(':user_id', $this->user_id);
 
       if ($stmt->execute())
         return true;
       echo "Error: ".$stmt->error;
       return false;
   }
-
-  // Create Count
-  public function create_count($last_id) {
-    $stmt = $this->conn->prepare(UserSql::$INSERT_COUNT);
-    $stmt->bindParam(':id', $last_id);
-
-    if ($stmt->execute())
-      return true;
-    echo "Error: ".$stmt->error;
-    return false;
-  } 
 
 }
 
