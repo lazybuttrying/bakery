@@ -41,9 +41,8 @@ if ($rowCount != 0) {
 $last_id = -1;
 try {
   $db->beginTransaction();
-  $last_id = $user->create_user();
-  $user->create_payment($last_id);
-  $user->create_count($last_id);
+  $user->create_user();
+  $user->create_payment();
   echo '회원가입 성공!';
   $db->commit();
 
