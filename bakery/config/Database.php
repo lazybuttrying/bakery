@@ -1,7 +1,7 @@
 <?php
 class Database {
   private $host = 'localhost';
-  private $db_name = 'bakerydb';
+  private $db_name = 'bda';
   private $username = 'root';
   private $password = '';
   private $conn;
