@@ -6,7 +6,6 @@ class User {
 
   // DB stuff
   private $conn;
-  private $table = 'user';
 
   // User Properties
   public $user_id;
@@ -81,7 +80,31 @@ class User {
       echo "Error: ".$stmt->error;
       return false;
   }
+  
+  // -1 on view count
+  public function minus_view_count(){
+    $stmt = $this->conn->prepare(UserSql::$UPDATE_VIEW_COUNT);
+    $stmt->bindParam(':view_count', --$this->view_count);
+    $stmt->bindParam(':user_id', $this->user_id);
+    
+    if ($stmt->execute())
+      return true;
+    echo "Error: ".$stmt->error;
+    return false;
+  }
 
+  // edit password
+  public function update_pwd($new_pwd){
+    $stmt = $this->conn->prepare(UserSql::$UPDATE_PWD);
+    $stmt->bindParam(':pwd', $new_pwd);
+    $stmt->bindParam(':user_id', $this->user_id);
+    
+    if ($stmt->execute())
+      return true;
+    echo "Error: ".$stmt->error;
+    return false;
+
+  }
 }
 
 ?>
