@@ -89,7 +89,7 @@ ENGINE = InnoDB;
 -- Table `bda`.`menu`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bda`.`menu` (
-  `menu_id` INT NOT NULL,
+  `menu_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` VARCHAR(20) NOT NULL,
   `category` VARCHAR(20) NULL,
   `menu_name` VARCHAR(255) NOT NULL,
