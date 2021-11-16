@@ -132,14 +132,17 @@
          <div class="content">
         <div class="login-form">
          <h2>Login</h2>
+         <form action="#" name="login_form">
          <div class="idForm">
-            <input type="text" class="id" placeholder="ID">
+            <input type="text" class="id" placeholder="ID" id="userid">
         </div>
          <div class="passForm">
-             <input type="password" class="pw" placeholder="PW">
+             <input type="password" class="pw" placeholder="PW" id="userpw">
          </div>
-        <button type="button" class="btn" onclick="login()">LOG IN</button>
+        <button type="button" class="btn" onclick="check_input()">LOG IN</button>
          </div>
+        </form>
+
         <div class="bottomText">
             Don't you have ID? <a href="./signup.html">sign up</a>
         </div>
@@ -147,15 +150,22 @@
     </body>
 
     <script>
-        function login() {
-            var id = document.querySelector('.userid')
-            var pw = document.querySelector('.userpw')
-
-            if(id.value == "" || pw.value == ""){
-                document.querySelector('#error_msg').innerText = "아이디 혹은 비밀번호가 입력되지 않았습니다."
-            }else{
-                
+        // id나 pw를 입력하지 않으면 알림창 뜸
+        function check_input() {
+            if (!document.login_form.userid.value)
+            {
+                alert("Enter your ID!");
+                document.login_form.userid.focus();
+                return;
             }
+            if (!document.login_form.userpw.value)
+            {
+                alert("Enter your Password!");
+                document.login_form.userpw.focus();
+                return;
+            }
+            document.login_form.submit();
+            // 모두 확인 후 submit()
         }
     </script>
 

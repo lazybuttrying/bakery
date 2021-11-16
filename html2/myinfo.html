@@ -9,6 +9,12 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+        <style>
+            .myinfo {
+                font-size: medium;
+            }
+        </style>
     </head>
 
 
@@ -30,17 +36,38 @@
 
         <div class="content">
             <h1>My information</h1>
-            <form>
-            <label>ID </label><br>
-            <label>Username</label><br>
-            <label>PW </label>
-            <input class="form-control" type="password" name="pwd" id="password" placeholder="********" required /><br>
-            <label>Repeat Password</label>
-            <input class="form-control" type="password" name="pwd" id="passwordRepeat" placeholder="********" required /><br>
-            <label>E-mail</label>
+
+            <table class="myinfo">
+                <tr>
+                    <td width="5%" align="center" height=35px>*</td>
+                    <td width="45%">ID</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td width="5%" align="center"height=35px>*</td>
+                    <td width="30%">User name</td>
+                    <td></td>
+                </tr>
+                <tr >
+                    <td width="5%" align="center"height=35px>*</td>
+                    <td width="30%">PW</td>
+                    <td><input class="form-control" type="password" name="pwd" id="password" placeholder="********" required /></td>
+                </tr>
+                <tr>
+                    <td width="5%" align="center"height=35px>*</td>
+                    <td width="30%">Repeat PW</td>
+                    <td><input class="form-control" type="password" name="pwd" id="passwordRepeat" placeholder="********" required /></td>
+                </tr>
+                <tr>
+                    <td width="5%" align="center"height=35px>*</td>
+                    <td width="30%">E-mail</td>
+                    <td></td>
+                </tr>
+            </table>
+
             <br>
             <button type="submit" class="btn btn-black" onclick="login()" >Change Password</button>
-            </form>
+            
         </div>
 
         

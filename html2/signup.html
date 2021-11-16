@@ -98,11 +98,13 @@
                 <input type="text" class="typing" placeholder="E-mail">
               </div>
               <div class="Form">
-                  <input type="password" class="typing" placeholder="PW">
+                  <input type="password" class="typing" placeholder="PW" id="pw" onchange="check_pw()">
               </div>
               <div class="Form">
-                <input type="password" class="typing" placeholder="Repeat PW">
+                <input type="password" class="typing" placeholder="Repeat PW" id="pw2" onchange="check_pw()">
               </div>
+              <span id="check"></span>
+              <br>
           <button type="button" class="btn" onclick="signup()">SIGN UP</button>
         </div>
 
@@ -111,5 +113,21 @@
           </div>
       </div>
     </body>
+
+    <script>
+      function check_pw(){
+        var pw = document.getElementById('pw').value;
+        if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+            if(document.getElementById('pw').value==document.getElementById('pw2').value){
+                document.getElementById('check').innerHTML='The password matches.'
+                document.getElementById('check').style.color='black';
+            }
+            else{
+                document.getElementById('check').innerHTML='The password does not match.';
+                document.getElementById('check').style.color='red';
+            }
+         }
+      }
+    </script>
 </html>
 
