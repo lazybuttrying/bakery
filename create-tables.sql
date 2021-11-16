@@ -21,11 +21,10 @@ USE `bda` ;
 -- Table `bda`.`delivery`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bda`.`delivery` (
-  `location_id` INT NOT NULL AUTO_INCREMENT,
-  `delivery_name` VARCHAR(10) NOT NULL,
+  `location_name` VARCHAR(10) NOT NULL,
   `latitude` DECIMAL(8,6) NOT NULL,
   `longtitude` DECIMAL(9,6) NOT NULL,
-  PRIMARY KEY (`location_id`))
+  PRIMARY KEY (`location_name`))
 ENGINE = InnoDB;
 
 
@@ -51,13 +50,12 @@ CREATE TABLE IF NOT EXISTS `bda`.`order` (
   `datetime` DATETIME NOT NULL,
   `total` INT NOT NULL,
   `user_id` VARCHAR(20) NOT NULL,
-  `location_id` INT NULL,
+  `location_name` VARCHAR(10) NULL,
   PRIMARY KEY (`order_id`),
-  INDEX `fk_order_delivery_idx` (`location_id` ASC),
   INDEX `fk_order_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_order_delivery`
-    FOREIGN KEY (`location_id`)
-    REFERENCES `bda`.`delivery` (`location_id`)
+    FOREIGN KEY (`location_name`)
+    REFERENCES `bda`.`delivery` (`location_name`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_user1`
