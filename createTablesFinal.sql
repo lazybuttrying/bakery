@@ -124,30 +124,30 @@ CREATE TABLE IF NOT EXISTS `bda`.`payment` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `bda`.`order_detail`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bda`.`order_detail` ;
+-- -- -----------------------------------------------------
+-- -- Table `bda`.`order_detail`
+-- -- -----------------------------------------------------
+-- DROP TABLE IF EXISTS `bda`.`order_detail` ;
 
-CREATE TABLE IF NOT EXISTS `bda`.`order_detail` (
-  `order_detail_id` INT NOT NULL AUTO_INCREMENT,
-  `menu_id` INT NOT NULL,
-  `order_id` INT NOT NULL,
-  `count` INT NOT NULL,
-  PRIMARY KEY (`order_detail_id`),
-  INDEX `fk_order_detail_order1_idx` (`order_id` ASC),
-  INDEX `fk_order_detail_menu1_idx` (`menu_id` ASC),
-  CONSTRAINT `fk_order_detail_order1`
-    FOREIGN KEY (`order_id`)
-    REFERENCES `bda`.`order` (`order_detail_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_order_detail_menu1`
-    FOREIGN KEY (`menu_id`)
-    REFERENCES `bda`.`menu` (`menu_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+-- CREATE TABLE IF NOT EXISTS `bda`.`order_detail` (
+--   `order_detail_id` INT NOT NULL AUTO_INCREMENT,
+--   `menu_id` INT NOT NULL,
+--   `order_id` INT NOT NULL,
+--   `count` INT NOT NULL,
+--   PRIMARY KEY (`order_detail_id`),
+--   INDEX `fk_order_detail_order1_idx` (`order_id` ASC),
+--   INDEX `fk_order_detail_menu1_idx` (`menu_id` ASC),
+--   CONSTRAINT `fk_order_detail_order1`
+--     FOREIGN KEY (`order_id`)
+--     REFERENCES `bda`.`order` (`order_detail_id`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION,
+--   CONSTRAINT `fk_order_detail_menu1`
+--     FOREIGN KEY (`menu_id`)
+--     REFERENCES `bda`.`menu` (`menu_id`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION)
+-- ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
