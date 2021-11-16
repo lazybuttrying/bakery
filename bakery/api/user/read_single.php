@@ -34,4 +34,6 @@ $user_arr = array(
 
 // Make JSON
 echo json_encode($user_arr);
+
+$db = null; //close connection
 ?>
