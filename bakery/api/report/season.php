@@ -61,4 +61,6 @@ try {
 catch {
     $db->rollBack();
 }
+
+$db = null; //close connection
 ?>
