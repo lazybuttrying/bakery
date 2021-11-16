@@ -17,6 +17,8 @@ $user->pwd = $_POST['pwd'];
 
 $rowCount = $user->select_one_user_id();
 
+$db = null; //close connection
+
 if ($rowCount == 1) {
   if ($user->pwd == $_POST['pwd']) {
     $_SESSION['user_id'] = $user->user_id;
