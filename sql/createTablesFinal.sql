@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `bda`.`user` (
   `user_id` VARCHAR(20) NOT NULL,
   `pwd` VARCHAR(20) NOT NULL,
   `user_name` VARCHAR(20) NOT NULL,
-  `email` VARCHAR(30) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
   `auth` TINYINT(1) NOT NULL DEFAULT 0,
   `view_count` INT NOT NULL DEFAULT 5,
   PRIMARY KEY (`user_id`))
