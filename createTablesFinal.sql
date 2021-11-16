@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `bda`.`menu` (
   `menu_name` VARCHAR(255) NOT NULL,
   `price` INT NOT NULL,
   PRIMARY KEY (`menu_id`),
-  INDEX `fk_menu_user1_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_menu_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_menu_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `bda`.`user` (`user_id`)
@@ -84,9 +84,9 @@ CREATE TABLE IF NOT EXISTS `bda`.`order` (
   `total` INT NOT NULL,
   `count` INT NULL,
   PRIMARY KEY (`order_detail_id`),
-  INDEX `fk_order_user1_idx` (`user_id` ASC) VISIBLE,
-  INDEX `fk_order_delivery1_idx` (`location_name` ASC) VISIBLE,
-  INDEX `fk_order_menu1_idx` (`menu_id` ASC) VISIBLE,
+  INDEX `fk_order_user1_idx` (`user_id` ASC),
+  INDEX `fk_order_delivery1_idx` (`location_name` ASC),
+  INDEX `fk_order_menu1_idx` (`menu_id` ASC),
   CONSTRAINT `fk_order_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `bda`.`user` (`user_id`)
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `bda`.`payment` (
   `user_id` VARCHAR(20) NOT NULL,
   `payment_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`payment_id`, `user_id`),
-  INDEX `fk_payment_user1_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_payment_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_payment_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `bda`.`user` (`user_id`)
@@ -135,8 +135,8 @@ CREATE TABLE IF NOT EXISTS `bda`.`order_detail` (
   `order_id` INT NOT NULL,
   `count` INT NOT NULL,
   PRIMARY KEY (`order_detail_id`),
-  INDEX `fk_order_detail_order1_idx` (`order_id` ASC) VISIBLE,
-  INDEX `fk_order_detail_menu1_idx` (`menu_id` ASC) VISIBLE,
+  INDEX `fk_order_detail_order1_idx` (`order_id` ASC),
+  INDEX `fk_order_detail_menu1_idx` (`menu_id` ASC),
   CONSTRAINT `fk_order_detail_order1`
     FOREIGN KEY (`order_id`)
     REFERENCES `bda`.`order` (`order_detail_id`)
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `bda`.`time` (
   `order_detail_id` INT NOT NULL,
   `time_zone` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_time_order1_idx` (`order_detail_id` ASC) VISIBLE,
+  INDEX `fk_time_order1_idx` (`order_detail_id` ASC),
   CONSTRAINT `fk_time_order1`
     FOREIGN KEY (`order_detail_id`)
     REFERENCES `bda`.`order` (`order_detail_id`)
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `bda`.`season` (
   `order_detail_id` INT NOT NULL,
   `season` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_season_order1_idx` (`order_detail_id` ASC) VISIBLE,
+  INDEX `fk_season_order1_idx` (`order_detail_id` ASC),
   CONSTRAINT `fk_season_order1`
     FOREIGN KEY (`order_detail_id`)
     REFERENCES `bda`.`order` (`order_detail_id`)
@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `bda`.`date` (
   `order_detail_id` INT NOT NULL,
   `day_of_week` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_date_order1_idx` (`order_detail_id` ASC) VISIBLE,
+  INDEX `fk_date_order1_idx` (`order_detail_id` ASC),
   CONSTRAINT `fk_date_order1`
     FOREIGN KEY (`order_detail_id`)
     REFERENCES `bda`.`order` (`order_detail_id`)
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `bda`.`years` (
   `year` INT NOT NULL,
   `order_detail_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_years_order1_idx` (`order_detail_id` ASC) VISIBLE,
+  INDEX `fk_years_order1_idx` (`order_detail_id` ASC),
   CONSTRAINT `fk_years_order1`
     FOREIGN KEY (`order_detail_id`)
     REFERENCES `bda`.`order` (`order_detail_id`)
