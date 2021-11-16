@@ -1,0 +1,148 @@
+
+* {
+  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montagu Slab', sans-serif;
+  font-family: 'Playfair Display', sans-serif;
+  font-family: 'PT Serif', serif;
+  font-family: 'Bree Serif', sans-serif;
+}
+
+a { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
+.header {
+    padding: 80px; /* some padding */
+    text-align: center; /* center the text */
+    background-image : url(./bakery.jpg);
+    background-repeat : no-repeat;
+    background-size : cover ;
+    background: #ADA996;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    
+    
+
+    color: black; 
+    text-decoration: none;
+  }
+
+.header h1 {
+    font-size: 40px;
+    text-decoration: none;
+}
+
+.header h1 a{
+    color : black;
+}
+
+.header h3 {
+    font-style:italic;
+    font-weight: lighter;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+  .navbar {
+    overflow: hidden; /* Hide overflow */
+  }
+  
+  /* Style the navigation bar links */
+  .navbar a {
+    float: right; /* Make sure that the links stay side-by-side */
+    display: block; /* Change the display to block, for responsive reasons (see below) */
+    color: rgb(8, 0, 0); /* White text color */
+    text-align: center; /* Center the text */
+    padding: 14px 20px; /* Add some padding */
+    text-decoration: none; /* Remove underline */
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Column container */
+  .list {
+    text-decoration: none;
+    list-style : none;
+    font-size : 24px;
+  }
+  
+  .list a {
+    text-decoration: none;
+    list-style : none;
+    font-size : 24px;
+    color : black;
+  }
+
+  .datasection {
+    flex: 30%; /* Set the width of the sidebar */
+    padding: 20px; /* Some padding */
+    text-decoration: none;
+    text-align: center;
+    
+  }
+  
+  .datasection li {
+    display: inline-block;
+    width: 420px;
+    height: 90x;
+    padding: 10px;
+    border: 5px;
+    margin: 5px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50px;
+    background-color: #e8e1e1;
+    background-size: cover;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+}
+
+  .servicelist {
+    flex: 70%; /* Set the width of the main content */
+    background-color: white; /* White background color */
+    padding: 20px; /* Some padding */
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .servicelist li {
+    display: inline-block;  
+    padding: 10px;
+    border: 5px;
+    margin: 5px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+
+    width: 630px;
+    height: 80px;
+    border-radius: 50px;
+    background-color: #d6cece;
+    background-size: cover;
+}
+  
+
+  .container table tr th {
+    text-align: center; 
+    vertical-align: middle; 
+    word-break: keep-all;
+    padding-right: 3em;
+  }
+  
+  .container table tr td {
+    text-align: center; 
+    vertical-align: middle; 
+    word-break: keep-all;
+    padding-right: 3em;
+  }
+  

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Data analysis tool for bakery owners</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="mainstyle.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+        <style>
+            .signup-form {
+                align-items: center;
+                text-align: center; 
+                text-decoration: none; 
+                font-size : 20px;
+                padding: 30px; 
+                width: 700px;
+                    
+            }
+
+            .signup-form h2{
+            text-align: center;
+            margin: 30px;
+            }
+
+            .Form{
+            border-bottom: 2px solid #adadad;
+            margin: 30px;
+            padding: 10px 10px;
+            }
+
+
+            .typing {
+            width: 100%;
+            border:none;
+            outline:none;
+            color: #636e72;
+            font-size:16px;
+            height:25px;
+            background: none;
+            }
+
+            .btn {
+            position:relative;
+            left:40%;
+            transform: translateX(-50%);
+            margin-bottom: 40px;
+            width:80%;
+            height:40px;
+            background-color: #d6cece;
+            background-position: left;
+            background-size: 200%;
+            color:white;
+            font-weight: bold;
+            border:none;
+            cursor:pointer;
+            transition: 0.4s;
+            display:inline;
+            }
+
+            .btn:hover {
+            background-position: right;
+            }
+
+            .bottomText {
+            text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="header">
+            <h1><a href="./intro.html">Data analysis tool for bakery owners</a></h1>
+            <h3>The site is designed to provide a variety of auxiliary data to help bakery owners operate the store by analyzing sales data of the products.</h3>
+            </div>
+
+        </header>
+
+        <div class="navbar">
+          <a href="./intro.html">Log In</a>
+        </div>
+        
+        <hr>
+          
+        <div class="content">
+          <div class="signup-form">
+           <h2>Sign up</h2>
+              <div class="Form">
+                  <input type="text" class="typing" placeholder="ID">
+              </div>
+              <div class="Form">
+                <input type="text" class="typing" placeholder="NAME">
+              </div>
+              <div class="Form">
+                <input type="text" class="typing" placeholder="E-mail">
+              </div>
+              <div class="Form">
+                  <input type="password" class="typing" placeholder="PW">
+              </div>
+              <div class="Form">
+                <input type="password" class="typing" placeholder="Repeat PW">
+              </div>
+          <button type="button" class="btn" onclick="signup()">SIGN UP</button>
+        </div>
+
+          <div class="bottomText">
+              I'm already a member <a href="./intro.html">log in</a>
+          </div>
+      </div>
+    </body>
+</html>
+

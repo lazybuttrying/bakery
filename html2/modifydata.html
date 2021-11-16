@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Data analysis tool for bakery owners</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="mainstyle.css">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+        <style>
+
+            .inputdata label{
+                padding-right: 25px;
+            }
+
+            .container h2{
+                text-align: center;
+            }
+
+            .content h1{
+                width: 417px;
+                height: 97px;
+                border-radius: 50px;
+                background-color: #e8e1e1;
+                background-size: cover;
+                box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+                text-align: center;
+                line-height:97px;
+            }
+
+
+            .btn1 {
+            position:relative;
+            left:50%;
+            transform: translateX(-50%);
+            margin-bottom: 40px;
+            width:80%;
+            height:40px;
+            background-color: #d6cece;
+            background-position: left;
+            background-size: 200%;
+            color:rgb(0, 0, 0);
+            font-weight: bold;
+            border:none;
+            cursor:pointer;
+            transition: 0.4s;
+            display:inline;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="header">
+            <h1><a href="./main.html">Data analysis tool for bakery owners</a></h1>
+            <h3>The site is designed to provide a variety of auxiliary data to help bakery owners operate the store by analyzing sales data of the products.</h3>
+            </div>
+
+        </header>
+
+        <div class="navbar">
+            <a href="./intro.html">Log Out</a>
+            <a href="./myinfo.html">My info</a>
+        </div>
+        <hr>
+
+        <div class = "content">
+            <h1>Modify your data</h1>
+            <div class="inputdata">
+                <h2 style="margin-bottom: 1em">Insert new product data</h2>
+                <label>Product Name</label>
+                <input type="text"  placeholder="Within 20 letters." name="pname"><br><br>
+                <label>Price</label>
+                <input type="text"  placeholder="Within 20 letters." name="price"><br><br>
+                <label>Category</label>
+                <select name="category">
+                    <option value="Bread" selected="selected">Bread</option>
+                    <option value="Choco">Choco</option>
+                    <option value="Cake">Cake</option>
+                    <option value="Beverage">Beverage</option>
+                </select><br>
+                <br>
+                <button type="submit" class="btn1" onclick="login()">REGISTER</button>
+
+                <hr>
+            </div>
+
+        
+
+        <div class="container">
+            <h2>Product list</h2>
+            <table id="userList" class="table table-hover">
+                <tr>
+                  <th>Product Number</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Delete</th>
+                </tr>
+                <tr>
+                  <td class="ProductNum">1</td>
+                  <td>상품1</td>
+                  <td>1000</td>
+                  <td>Cake</td>
+                  <td>
+                    <button class="btn btn-danger pull-right" type="button" onclick="getUserName()">Delete</button>
+                  </td>
+                </tr>
+                <tr>
+                    <td class="ProductNum">2</td>
+                    <td>상품2</td>
+                    <td>1000</td>
+                    <td>Cake</td>
+                    <td>
+                        <button class="btn btn-danger pull-right"
+                        type="button" onclick="getUserName()">Delete</button>
+                    </td>
+                  </tr>
+            </table>
+            </div>
+            </div>
+    </body>
+
+    <script>
+    function getUserName() {
+    let userList = document.getElementById('userList');
+
+        for (let i = 1; i < userList.rows.length; i++) {
+        userList.rows[i].cells[4].onclick = function () {
+            let userName = userList.rows[i].cells[1].innerText;
+            alert(userName+"을 삭제하시겠습니까?");
+        }
+    }
+    }
+    </script>
+    </html>
