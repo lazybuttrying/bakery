@@ -1,0 +1,43 @@
+﻿menu_id,user_id,category,menu_name,price
+1,user01,bread,angbutter,4800
+2,user01,bread,plain bread,3500
+3,user01,,peach jam,1500
+4,user01,beverage,americano,4000
+5,user01,bread,croissant,3500
+6,user01,beverage,ice coffe latter,4500
+7,user01,bread,tiramisu croissant,4800
+8,user01,bread,cacao deep,4000
+9,user01,bread,pain au chocolat,3500
+10,user01,bread,almond croissant,4000
+11,user01,beverage,ice milk tea,4500
+12,user01,cake,gateau chocolat,4000
+13,user01,bread,pandoro,4500
+14,user01,cake,cheese cake,5000
+15,user01,beverage,lemon ade,4500
+16,user01,bread,orange pound,4500
+17,user01,bread,sausage bread,2500
+18,user01,beverage,valina latte,4500
+19,user01,beverage,berry ade,4500
+20,user01,cake,tiramisu,4500
+21,user01,,merinque cookies,4000
+22,ewha777,bread,angbutter,4200
+23,ewha777,bread,plain bread,3100
+24,ewha777,,peach jam,1300
+25,ewha777,beverage,americano,2400
+26,ewha777,bread,croissant,2800
+27,ewha777,beverage,ice coffe latter,3200
+28,ewha777,bread,tiramisu croissant,3800
+29,ewha777,bread,cacao deep,4000
+30,ewha777,bread,pain au chocolat,3200
+31,ewha777,bread,almond croissant,3400
+32,ewha777,beverage,ice milk tea,3600
+33,ewha777,cake,gateau chocolat,4000
+34,ewha777,bread,pandoro,4100
+35,ewha777,cake,cheese cake,5500
+36,ewha777,beverage,lemon ade,4000
+37,ewha777,bread,orange pound,4600
+38,ewha777,bread,sausage bread,2500
+39,ewha777,beverage,valina latte,4000
+40,ewha777,beverage,berry ade,5000
+41,ewha777,cake,tiramisu,4000
+42,ewha777,,merinque cookies,3500
