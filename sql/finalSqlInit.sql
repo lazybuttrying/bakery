@@ -264,6 +264,55 @@ INSERT INTO delivery (location_name, latitude, longtitude, district) VALUES ('�
 -- ------------
 -- menu
 -- ------------
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (1,'user01','bread','angbutter',4800);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (2,'user01','bread','plain bread',3500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (3,'user01','','peach jam',1500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (4,'user01','beverage','americano',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (5,'user01','bread','croissant',3500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (6,'user01','beverage','ice coffe latter',4500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (7,'user01','bread','tiramisu croissant',4800);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (8,'user01','bread','cacao deep',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (9,'user01','bread','pain au chocolat',3500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (10,'user01','bread','almond croissant',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (11,'user01','beverage','ice milk tea',4500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (12,'user01','cake','gateau chocolat',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (13,'user01','bread','pandoro',4500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (14,'user01','cake','cheese cake',5000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (15,'user01','beverage','lemon ade',4500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (16,'user01','bread','orange pound',4500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (17,'user01','bread','sausage bread',2500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (18,'user01','beverage','valina latte',4500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (19,'user01','beverage','berry ade',4500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (20,'user01','cake','tiramisu',4500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (21,'user01','','merinque cookies',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (22,'ewha777','bread','angbutter',4200);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (23,'ewha777','bread','plain bread',3100);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (24,'ewha777','','peach jam',1300);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (25,'ewha777','beverage','americano',2400);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (26,'ewha777','bread','croissant',2800);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (27,'ewha777','beverage','ice coffe latter',3200);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (28,'ewha777','bread','tiramisu croissant',3800);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (29,'ewha777','bread','cacao deep',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (30,'ewha777','bread','pain au chocolat',3200);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (31,'ewha777','bread','almond croissant',3400);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (32,'ewha777','beverage','ice milk tea',3600);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (33,'ewha777','cake','gateau chocolat',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (34,'ewha777','bread','pandoro',4100);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (35,'ewha777','cake','cheese cake',5500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (36,'ewha777','beverage','lemon ade',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (37,'ewha777','bread','orange pound',4600);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (38,'ewha777','bread','sausage bread',2500);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (39,'ewha777','beverage','valina latte',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (40,'ewha777','beverage','berry ade',5000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (41,'ewha777','cake','tiramisu',4000);
+INSERT INTO menu (menu_id, user_id, category, menu_name, price) VALUES (42,'ewha777','','merinque cookies',3500);
+
+
+
+
+-- ---------------
+-- order + (season, time, year, date)
+-- --------------
 INSERT INTO  `order` (order_id, user_id, menu_id, datetime, total, location_name, count ) VALUES (1,'user01',1,'2019-08-30 11:10:00',16400,'약사명동',3);
 INSERT INTO  `season` (order_detail_id, season) VALUES (1,'summer'); 
 INSERT INTO  `date` (order_detail_id, day_of_week) VALUES (1,'fri'); 
