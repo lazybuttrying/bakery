@@ -85,27 +85,30 @@
         
         <hr>
           
+       
         <div class="content">
           <div class="signup-form">
-           <h2>Sign up</h2>
+           <form name="signupForm" action="../api/user/create.php" method="POST" >
+            <h2>Sign up</h2>
               <div class="Form">
-                  <input type="text" class="typing" placeholder="ID">
+                  <input type="text" name = "user_id"class="typing" placeholder="ID">
               </div>
               <div class="Form">
-                <input type="text" class="typing" placeholder="NAME">
+                <input type="text" name = "name" class="typing" placeholder="NAME">
               </div>
               <div class="Form">
-                <input type="text" class="typing" placeholder="E-mail">
+                <input type="text" name="email" class="typing" placeholder="E-mail">
               </div>
               <div class="Form">
-                  <input type="password" class="typing" placeholder="PW" id="pw" onchange="check_pw()">
+                  <input type="password" name="pwd" class="typing" placeholder="PW" id="pw" onchange="check_pw()">
               </div>
               <div class="Form">
-                <input type="password" class="typing" placeholder="Repeat PW" id="pw2" onchange="check_pw()">
+                <input type="password" name="pwdcheck" class="typing" placeholder="Repeat PW" id="pw2" onchange="check_pw()">
               </div>
               <span id="check"></span>
               <br>
-          <button type="button" class="btn" onclick="signup()">SIGN UP</button>
+            <button type="button" class="btn" onclick="signup()">SIGN UP</button>
+            </form>
         </div>
 
           <div class="bottomText">
@@ -121,13 +124,19 @@
             if(document.getElementById('pw').value==document.getElementById('pw2').value){
                 document.getElementById('check').innerHTML='The password matches.'
                 document.getElementById('check').style.color='black';
+                signupForm.submit();
+
             }
             else{
                 document.getElementById('check').innerHTML='The password does not match.';
                 document.getElementById('check').style.color='red';
+                
+
             }
          }
-      }
+
+    }
+      
     </script>
 </html>
 

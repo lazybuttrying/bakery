@@ -33,7 +33,7 @@ if ($user->user_id==NULL || $user->pwd == NULL || $user->user_name== NULL || $us
 $rowCount = $user->select_one_user_id();
 if ($rowCount != 0) {
   //header("Location: /bakery/view/error.php?path=/index.html&msg=중복된 아이디입니다");
-  echo '중복된 아이디입니다';
+  echo '<script>alert("중복된 아이디 입니다.");document.location.href = "../../view/signup.html";</script>';
   exit();
 } 
 
@@ -43,7 +43,7 @@ try {
   $db->beginTransaction();
   $user->create_user();
   $user->create_payment();
-  echo '회원가입 성공!';
+  echo '<script>alert("회원가입 성공!");document.location.href = "../../view/intro.html";</script>';
   $db->commit();
 
 
