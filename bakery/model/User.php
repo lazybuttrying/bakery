@@ -84,7 +84,8 @@ class User {
   // -1 on view count
   public function minus_view_count(){
     $stmt = $this->conn->prepare(UserSql::$UPDATE_VIEW_COUNT);
-    $stmt->bindParam(':view_count', --$this->view_count);
+    $this->view_count--;
+    $stmt->bindParam(':view_count', $this->view_count);
     $stmt->bindParam(':user_id', $this->user_id);
     
     if ($stmt->execute())

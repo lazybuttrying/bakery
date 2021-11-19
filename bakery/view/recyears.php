@@ -108,10 +108,11 @@
                 async:false,
 
                 success: function (msg) { 
-                    if (!msg){
-                        $("#list").append("Empty data");
+                    if (Object.keys(msg["data"]).length==0){
+                        alert(msg["msg"]);
                         return;
                     }
+                    msg = msg["data"];
                     $("#list").html("");
                     var html = "";
                     for(var i=0; i<Object.keys(msg).length; i++){
