@@ -23,18 +23,24 @@ class Order {
   }
 
 
-  public function report_rank($type, $input) {
-    $query = ''
-    switch($type){
-        case "season":
-            $query = OrderSql::$SELECT_RANK_SEASON;
-            break;
-        case "day_of_week":
-            $query = OrderSql::$SELECT_RANK_DATE;
-            break;
+  public function report_rank($table, $value, $user_id) {
+    $queries = array("season" => OrderSql::$RANK_SEASON,
+                    "date" => OrderSql::$RANK_DATE,
+                    "years" => OrderSql::$RANK_YEARS,
+                    "time" => OrderSql::$RANK_TIME,
+  );
+    $stmt = $this->conn->prepare($queries[$table]);
+    $stmt->bindParam(':value', $value); 
+    $stmt->bindParam(':user_id', $user_id);
+    
+    //print_r($stmt);
+    try{
+      $stmt->execute();
+      return $stmt->fetchAll();
+    }catch(Exception $e){
+      //echo $e;
     }
-    $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(':'.$type, $input); 
-    $stmt->execute();
-    return $stmt
   }
+
+}
+?>
