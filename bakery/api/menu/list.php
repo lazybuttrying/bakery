@@ -18,22 +18,23 @@ if (!isset($_SESSION['user_id'])){
 }
 
 $menu->user_id = $_SESSION['user_id'];
+$result = $menu->select_all(); // get menu list
 
-$result = $order->select_all(); // get menu list
-
-
-$menu_arr = array();
-$menu_arr['data'] = array();
-
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $menu_info = array(
-        'menu_name' => $menu_name,
-        'category' => $menu->category,
-        'price' => $row['price']
+if ($result) {
+  $arr = array();
+  foreach ($result as $row){
+    $one_row = array(
+    'menu_name' => $row['menu_name'],
+    'category' => $row['category'],
+    'price' => $row['price'],
     );
-    array_push($menu_arr['data'], $menu_info);
+    array_push($arr, $one_row);
+  }
+  echo json_encode($arr, JSON_FORCE_OBJECT);
 }
-echo json_encode($menu_arr);
+
+$menu = null;
+$db = null;
 
 
 ?>
