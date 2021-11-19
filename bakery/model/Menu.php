@@ -64,7 +64,7 @@ class Menu {
   }
 
   public function insert_menu() {
-    $stmt = $this->conn->prepare(MenuSql::$DELETE_ONE);
+    $stmt = $this->conn->prepare(MenuSql::$INSERT_ONE);
     $stmt->bindParam(':menu_name', $this->menu_name); 
     $stmt->bindParam(':category', $this->category); 
     $stmt->bindParam(':price', $this->price); 
