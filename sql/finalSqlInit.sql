@@ -1,20 +1,20 @@
 -- -----------------------------------------------------
--- Schema team11
+-- Schema team20
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `team11` ;
+DROP SCHEMA IF EXISTS `team20` ;
 
 -- -----------------------------------------------------
--- Schema team11
+-- Schema team20
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `team11` DEFAULT CHARACTER SET utf8 ;
-USE `team11` ;
+CREATE SCHEMA IF NOT EXISTS `team20` DEFAULT CHARACTER SET utf8 ;
+USE `team20` ;
 
 -- -----------------------------------------------------
--- Table `team11`.`user`
+-- Table `team20`.`user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `team11`.`user` ;
+DROP TABLE IF EXISTS `team20`.`user` ;
 
-CREATE TABLE IF NOT EXISTS `team11`.`user` (
+CREATE TABLE IF NOT EXISTS `team20`.`user` (
   `user_id` VARCHAR(20) NOT NULL,
   `pwd` VARCHAR(20) NOT NULL,
   `user_name` VARCHAR(100) NOT NULL,
@@ -26,11 +26,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `team11`.`delivery`
+-- Table `team20`.`delivery`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `team11`.`delivery` ;
+DROP TABLE IF EXISTS `team20`.`delivery` ;
 
-CREATE TABLE IF NOT EXISTS `team11`.`delivery` (
+CREATE TABLE IF NOT EXISTS `team20`.`delivery` (
   `location_name` VARCHAR(10) NOT NULL,
   `district` VARCHAR(10) NULL,
   `latitude` DECIMAL(9,7) NOT NULL,
@@ -40,11 +40,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `team11`.`menu`
+-- Table `team20`.`menu`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `team11`.`menu` ;
+DROP TABLE IF EXISTS `team20`.`menu` ;
 
-CREATE TABLE IF NOT EXISTS `team11`.`menu` (
+CREATE TABLE IF NOT EXISTS `team20`.`menu` (
   `menu_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` VARCHAR(20) NOT NULL,
   `category` VARCHAR(20) NULL,
@@ -54,18 +54,18 @@ CREATE TABLE IF NOT EXISTS `team11`.`menu` (
   INDEX `fk_menu_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_menu_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `team11`.`user` (`user_id`)
+    REFERENCES `team20`.`user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `team11`.`order`
+-- Table `team20`.`order`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `team11`.`order` ;
+DROP TABLE IF EXISTS `team20`.`order` ;
 
-CREATE TABLE IF NOT EXISTS `team11`.`order` (
+CREATE TABLE IF NOT EXISTS `team20`.`order` (
   `order_detail_id` INT NOT NULL AUTO_INCREMENT,
   `order_id` INT NOT NULL,
   `user_id` VARCHAR(20) NOT NULL,
@@ -80,28 +80,28 @@ CREATE TABLE IF NOT EXISTS `team11`.`order` (
   INDEX `fk_order_menu1_idx` (`menu_id` ASC),
   CONSTRAINT `fk_order_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `team11`.`user` (`user_id`)
+    REFERENCES `team20`.`user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_delivery1`
     FOREIGN KEY (`location_name`)
-    REFERENCES `team11`.`delivery` (`location_name`)
+    REFERENCES `team20`.`delivery` (`location_name`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_menu1`
     FOREIGN KEY (`menu_id`)
-    REFERENCES `team11`.`menu` (`menu_id`)
+    REFERENCES `team20`.`menu` (`menu_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `team11`.`payment`
+-- Table `team20`.`payment`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `team11`.`payment` ;
+DROP TABLE IF EXISTS `team20`.`payment` ;
 
-CREATE TABLE IF NOT EXISTS `team11`.`payment` (
+CREATE TABLE IF NOT EXISTS `team20`.`payment` (
   `payment_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` VARCHAR(20) NOT NULL,
   `payment_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
@@ -109,18 +109,18 @@ CREATE TABLE IF NOT EXISTS `team11`.`payment` (
   INDEX `fk_payment_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_payment_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `team11`.`user` (`user_id`)
+    REFERENCES `team20`.`user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -- -----------------------------------------------------
--- -- Table `team11`.`order_detail`
+-- -- Table `team20`.`order_detail`
 -- -- -----------------------------------------------------
--- DROP TABLE IF EXISTS `team11`.`order_detail` ;
+-- DROP TABLE IF EXISTS `team20`.`order_detail` ;
 
--- CREATE TABLE IF NOT EXISTS `team11`.`order_detail` (
+-- CREATE TABLE IF NOT EXISTS `team20`.`order_detail` (
 --   `order_detail_id` INT NOT NULL AUTO_INCREMENT,
 --   `menu_id` INT NOT NULL,
 --   `order_id` INT NOT NULL,
@@ -130,23 +130,23 @@ ENGINE = InnoDB;
 --   INDEX `fk_order_detail_menu1_idx` (`menu_id` ASC),
 --   CONSTRAINT `fk_order_detail_order1`
 --     FOREIGN KEY (`order_id`)
---     REFERENCES `team11`.`order` (`order_detail_id`)
+--     REFERENCES `team20`.`order` (`order_detail_id`)
 --     ON DELETE NO ACTION
 --     ON UPDATE NO ACTION,
 --   CONSTRAINT `fk_order_detail_menu1`
 --     FOREIGN KEY (`menu_id`)
---     REFERENCES `team11`.`menu` (`menu_id`)
+--     REFERENCES `team20`.`menu` (`menu_id`)
 --     ON DELETE NO ACTION
 --     ON UPDATE NO ACTION)
 -- ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `team11`.`time`
+-- Table `team20`.`time`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `team11`.`time` ;
+DROP TABLE IF EXISTS `team20`.`time` ;
 
-CREATE TABLE IF NOT EXISTS `team11`.`time` (
+CREATE TABLE IF NOT EXISTS `team20`.`time` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `order_detail_id` INT NOT NULL,
   `time_zone` CHAR(1) NOT NULL,
@@ -154,18 +154,18 @@ CREATE TABLE IF NOT EXISTS `team11`.`time` (
   INDEX `fk_time_order1_idx` (`order_detail_id` ASC),
   CONSTRAINT `fk_time_order1`
     FOREIGN KEY (`order_detail_id`)
-    REFERENCES `team11`.`order` (`order_detail_id`)
+    REFERENCES `team20`.`order` (`order_detail_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `team11`.`season`
+-- Table `team20`.`season`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `team11`.`season` ;
+DROP TABLE IF EXISTS `team20`.`season` ;
 
-CREATE TABLE IF NOT EXISTS `team11`.`season` (
+CREATE TABLE IF NOT EXISTS `team20`.`season` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `order_detail_id` INT NOT NULL,
   `season` VARCHAR(10) NOT NULL,
@@ -173,18 +173,18 @@ CREATE TABLE IF NOT EXISTS `team11`.`season` (
   INDEX `fk_season_order1_idx` (`order_detail_id` ASC),
   CONSTRAINT `fk_season_order1`
     FOREIGN KEY (`order_detail_id`)
-    REFERENCES `team11`.`order` (`order_detail_id`)
+    REFERENCES `team20`.`order` (`order_detail_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `team11`.`date`
+-- Table `team20`.`date`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `team11`.`date` ;
+DROP TABLE IF EXISTS `team20`.`date` ;
 
-CREATE TABLE IF NOT EXISTS `team11`.`date` (
+CREATE TABLE IF NOT EXISTS `team20`.`date` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `order_detail_id` INT NOT NULL,
   `day_of_week` VARCHAR(10) NOT NULL,
@@ -192,18 +192,18 @@ CREATE TABLE IF NOT EXISTS `team11`.`date` (
   INDEX `fk_date_order1_idx` (`order_detail_id` ASC),
   CONSTRAINT `fk_date_order1`
     FOREIGN KEY (`order_detail_id`)
-    REFERENCES `team11`.`order` (`order_detail_id`)
+    REFERENCES `team20`.`order` (`order_detail_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `team11`.`years`
+-- Table `team20`.`years`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `team11`.`years` ;
+DROP TABLE IF EXISTS `team20`.`years` ;
 
-CREATE TABLE IF NOT EXISTS `team11`.`years` (
+CREATE TABLE IF NOT EXISTS `team20`.`years` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `year` INT NOT NULL,
   `order_detail_id` INT NOT NULL,
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `team11`.`years` (
   INDEX `fk_years_order1_idx` (`order_detail_id` ASC),
   CONSTRAINT `fk_years_order1`
     FOREIGN KEY (`order_detail_id`)
-    REFERENCES `team11`.`order` (`order_detail_id`)
+    REFERENCES `team20`.`order` (`order_detail_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -1,32 +1,54 @@
 <?php
-$SELECT_ORDER_DETAIL_BY_SEASON = "SELECT o.order_id, o.menu_id, o.count FROM order_detail o ";
-$SELECT_ORDER_DETAIL_BY_SEASON = $SELECT_ORDER_DETAIL_BY_SEASON."LEFT JOIN season s ON o.order_id=s.order_id ";
-$SELECT_ORDER_DETAIL_BY_SEASON = $SELECT_ORDER_DETAIL_BY_SEASON."WHERE s.season=:season";
-
-$SELECT_RANK_SEASON = "SELECT DISTINCT sub.menu_id, SUM(sub.count) OVER (PARTITION BY menu_id) AS sum_count ";
-$SELECT_RANK_SEASON = $SELECT_RANK_SEASON."FROM (".$SELECT_ORDER_DETAIL_BY_SEASON.") sub "; // subquery는 alias 필수
-$SELECT_RANK_SEASON = $SELECT_RANK_SEASON."ORDER BY sum_count DESC ";
-
-$SELECT_ORDER_DETAIL_BY_DATE = "SELECT o.order_id, o.menu_id, o.count FROM order_detail o ";
-$SELECT_ORDER_DETAIL_BY_DATE = $SELECT_ORDER_DETAIL_BY_DATE."LEFT JOIN date d ON o.order_id=d.order_id ";
-$SELECT_ORDER_DETAIL_BY_DATE = $SELECT_ORDER_DETAIL_BY_DATE."WHERE d.day_of_week=:date";
-
-$SELECT_RANK_DATE = "SELECT DISTINCT sub.menu_id, SUM(sub.count) OVER (PARTITION BY menu_id) AS sum_count ";
-$SELECT_RANK_DATE = $SELECT_RANK_DATE."FROM (".$SELECT_ORDER_DETAIL_BY_DATE.") sub "; // subquery는 alias 필수
-$SELECT_RANK_DATE = $SELECT_RANK_DATE."ORDER BY sum_count DESC ";
-
+class OrderSql {
+    public static $RANK_SEASON = "SELECT o.menu_id, SUM(o.count) AS sum_count, 
+        (DENSE_RANK() OVER (PARTITION BY t.season ORDER BY sum_count DESC)) AS `rank` 
+        FROM `order` o 
+        LEFT JOIN season t ON o.order_detail_id=t.order_detail_id 
+        WHERE o.user_id = :user_id 
+        GROUP BY t.season, o.menu_id 
+        HAVING t.season = :value 
+        ORDER BY `rank`; ";
+    public static $RANK_DATE = "SELECT o.menu_id, SUM(o.count) AS sum_count, 
+        (DENSE_RANK() OVER (PARTITION BY t.day_of_week ORDER BY sum_count DESC)) AS `rank` 
+        FROM `order` o 
+        LEFT JOIN `date` t ON o.order_detail_id=t.order_detail_id 
+        WHERE o.user_id = :user_id 
+        GROUP BY t.day_of_week, o.menu_id 
+        HAVING t.day_of_week = :value 
+        ORDER BY `rank`; ";
+    public static $RANK_YEARS = "SELECT o.menu_id, SUM(o.count) AS sum_count, 
+        (DENSE_RANK() OVER (PARTITION BY t.year ORDER BY sum_count DESC)) AS `rank` 
+        FROM `order` o 
+        LEFT JOIN years t ON o.order_detail_id=t.order_detail_id 
+        WHERE o.user_id = :user_id 
+        GROUP BY t.year, o.menu_id 
+        HAVING t.year = :value 
+        ORDER BY `rank`; ";
+    public static $RANK_TIME = "SELECT o.menu_id, SUM(o.count) AS sum_count, 
+        (DENSE_RANK() OVER (PARTITION BY t.time_zone ORDER BY sum_count DESC)) AS `rank` 
+        FROM `order` o 
+        LEFT JOIN `time` t ON o.order_detail_id=t.order_detail_id 
+        WHERE o.user_id = :user_id 
+        GROUP BY t.time_zone, o.menu_id 
+        HAVING t.time_zone = :value 
+        ORDER BY `rank`; ";
+}
 ?>
 
+<!-- SELECT o.menu_id, SUM(o.count) AS sum_count, 
+    DENSE_RANK() OVER (PARTITION BY t.day_of_week ORDER BY sum_count DESC) AS `ranking`
+FROM `order` o 
+LEFT JOIN `date` t ON o.order_detail_id=t.order_detail_id 
+WHERE o.user_id = "user01"
+GROUP BY t.day_of_week, o.menu_id 
+HAVING t.day_of_week='thu'
+ORDER BY `ranking`; -->
 <!-- 
-SELECT DISTINCT sub.menu_id, SUM(sub.count) OVER (PARTITION BY menu_id) AS sum_count 
-FROM (SELECT o.order_id, o.menu_id, o.count FROM order_detail o 
-LEFT JOIN season s ON o.order_id=s.order_id 
-WHERE s.season="fall") sub
-ORDER BY sum_count DESC; -->
-
-<!-- 
-SELECT DISTINCT sub.menu_id, SUM(sub.count) OVER (PARTITION BY menu_id) AS sum_count 
-FROM (SELECT o.order_id, o.menu_id, o.count FROM order_detail o 
-LEFT JOIN date d ON o.order_id=d.order_id 
-WHERE d.day_of_week="mon") sub
-ORDER BY sum_count DESC; -->
+SELECT o.menu_id, SUM(o.count) AS sum_count, 
+    DENSE_RANK() OVER (PARTITION BY t.day_of_week ORDER BY sum_count DESC)
+FROM `order` o 
+LEFT JOIN `date` t ON o.order_detail_id=t.order_detail_id 
+WHERE o.user_id = "user01"
+GROUP BY t.day_of_week, o.menu_id 
+HAVING t.day_of_week='thu'
+ORDER BY DENSE_RANK() OVER (PARTITION BY t.day_of_week ORDER BY sum_count DESC); -->

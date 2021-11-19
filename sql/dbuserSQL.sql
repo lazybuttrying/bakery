@@ -1,6 +1,6 @@
--- DROP USER 'team11'@'%';
+-- DROP USER 'team20'@'%';
 -- FLUSH PRIVILEGES;
 
-CREATE USER 'team11'@'%' IDENTIFIED BY 'team11';
-GRANT ALL ON team11.* TO 'team11'@'%';
+CREATE USER 'team20'@'%' IDENTIFIED BY 'team20';
+GRANT ALL ON team20.* TO 'team20'@'%';
 FLUSH PRIVILEGES;

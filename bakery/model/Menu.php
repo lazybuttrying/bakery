@@ -15,48 +15,60 @@ class Menu {
   public $menu_name;
   public $price;
 
-  public select_one_by_id($menu_id) {
+    // Constructor with DB
+    public function __construct($db) {
+      $this->conn = $db;
+    }
+  
+
+  public function select_one_by_id () {
     $stmt = $this->conn->prepare(MenuSql::$SELECT_ONE);  
-    $stmt->bindParam(':menu_id', $menu_id);     
+    $stmt->bindParam(':menu_id',$this->menu_id);     
+    $stmt->bindParam(':user_id',$this->user_id);    
     if ($stmt->execute()){
       if ($stmt->rowCount() == 0){
-        return False;
+        return false;
       }
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
-      $this->menu_id = $row['menu_id'];
-      $this->user_id = $row['user_id'];
-      $this->category = $row['category'];
+      //print_r($row);
+      // $this->menu_id = $row['menu_id'];
+      // $this->user_id = $row['user_id'];
+      // $this->category = $row['category'];
       $this->menu_name = $row['menu_name'];
-      $this->price = $row['price'];
+      // $this->price = $row['price'];
       return true;
     }
     echo "Error: ".$stmt->error;
-    return False;
+    return false;
   }
 
-  public select_all() {
+  public function select_all() {
     $stmt = $this->conn->prepare(MenuSql::$SELECT_ALL);
-    $stmt->bindParam(':user_id' $this->user_id); 
-    $stmt->execute();
-    return $stmt
+    $stmt->bindParam(':user_id', $this->user_id); 
+    try{
+      $stmt->execute();
+      return $stmt->fetchAll();
+    }catch(Exception $e){
+      //echo $e;
+    }
   }
 
-  public delete_one() {
+  public function delete_one() {
     $stmt = $this->conn->prepare(MenuSql::$DELETE_ONE);
-    $stmt->bindParam(':menu_name' $this->menu_name); 
-    $stmt->bindParam(':user_id' $this->user_id); 
+    $stmt->bindParam(':menu_name', $this->menu_name); 
+    $stmt->bindParam(':user_id', $this->user_id); 
     if ($stmt->execute())
       return true;
     echo "Error: ".$stmt->error;
     return false;
   }
 
-  public insert_menu() {
+  public function insert_menu() {
     $stmt = $this->conn->prepare(MenuSql::$DELETE_ONE);
-    $stmt->bindParam(':menu_name' $this->menu_name); 
-    $stmt->bindParam(':category' $this->category); 
-    $stmt->bindParam(':price' $this->price); 
-    $stmt->bindParam(':user_id' $this->user_id); 
+    $stmt->bindParam(':menu_name', $this->menu_name); 
+    $stmt->bindParam(':category', $this->category); 
+    $stmt->bindParam(':price', $this->price); 
+    $stmt->bindParam(':user_id', $this->user_id); 
     if ($stmt->execute())
       return true;
     echo "Error: ".$stmt->error;
