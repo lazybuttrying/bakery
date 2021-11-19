@@ -1,0 +1,6 @@
+-- DROP USER 'team20'@'%';
+-- FLUSH PRIVILEGES;
+
+CREATE USER 'team20'@'%' IDENTIFIED BY 'team20';
+GRANT ALL ON team20.* TO 'team20'@'%';
+FLUSH PRIVILEGES;
