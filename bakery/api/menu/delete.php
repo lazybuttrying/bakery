@@ -35,4 +35,8 @@ catch (Exception $e){
   $db->rollBack();
 }
 
+
+$menu = null;
+$db = null;
+
 ?>
