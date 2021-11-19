@@ -23,24 +23,6 @@ class Order {
   }
 
 
-<<<<<<< HEAD
-  public function report_rank($type, $input) {
-    $query = '';
-    switch($type){
-        case "season":
-            $query = OrderSql::$SELECT_RANK_SEASON;
-            break;
-        case "day_of_week":
-            $query = OrderSql::$SELECT_RANK_DATE;
-            break;
-    }
-    $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(':'.$type, $input); 
-    $stmt->execute();
-    return $stmt;
-  }
-}
-=======
   public function report_rank($table, $value, $user_id) {
     $queries = array("season" => OrderSql::$RANK_SEASON,
                     "date" => OrderSql::$RANK_DATE,
@@ -62,4 +44,3 @@ class Order {
 
 }
 ?>
->>>>>>> 5a7e53489c29a6027980714306d0a0e1d720385d
