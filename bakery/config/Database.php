@@ -1,9 +1,9 @@
 <?php
 class Database {
   private $host = 'localhost';
-  private $db_name = 'team11';
-  private $username = 'team11';
-  private $password = 'team11';
+  private $db_name = 'team20';
+  private $username = 'team20';
+  private $password = 'team20';
   private $conn;
 
   // DB connect
