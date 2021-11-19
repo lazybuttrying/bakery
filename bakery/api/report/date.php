@@ -52,13 +52,12 @@ try {
         $db->commit();
     }
     else {
-        echo "Failed. Empty data";  
-        $db->rollBack();
+        throw new Exception("0 result");
     }
 }
-catch {
+catch (Exception $e){
+    echo "Failed. Empty data";
     $db->rollBack();
 }
-
 $db = null; //close connection
 ?>

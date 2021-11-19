@@ -102,7 +102,7 @@
     <body>
         <header>
             <div class="header">
-            <h1>Data analysis tool for bakery owners</h1>
+            <h1><a href="./main.html">Data analysis tool for bakery owners</a></h1>
             <h3>The site is designed to provide a variety of auxiliary data to help bakery owners operate the store by analyzing sales data of the products.</h3>
             </div>
         </header>
@@ -132,15 +132,15 @@
          <div class="content">
         <div class="login-form">
          <h2>Login</h2>
-         <form action="#" name="login_form">
-         <div class="idForm">
-            <input type="text" class="id" placeholder="ID" id="userid">
-        </div>
-         <div class="passForm">
-             <input type="password" class="pw" placeholder="PW" id="userpw">
-         </div>
-        <button type="button" class="btn" onclick="check_input()">LOG IN</button>
-         </div>
+        <form action="../bakery/api/user/login.php" name="login_form" method="POST">
+            <div class="idForm">
+                <input type="text" class="id" name="user_id" placeholder="ID" id="userid">
+            </div>
+            <div class="passForm">
+                <input type="password" class="pw" name="pwd" placeholder="PW" id="userpw">
+            </div>
+            <button type="button" class="btn" onclick="check_input()">LOG IN</button>
+            </div>
         </form>
 
         <div class="bottomText">

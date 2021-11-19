@@ -19,19 +19,19 @@ $rowCount = $user->select_one_user_id();
 
 $db = null; //close connection
 
-if ($rowCount == 1) {
+if ($rowCount == 1) {//로그인 성공?
   if ($user->pwd == $_POST['pwd']) {
     $_SESSION['user_id'] = $user->user_id;
     if (isset($_SESSION['user_id'])) {
-      echo json_encode([
-        'redirect_to' => '/bakery/view/main.php'
-      ]);
-      exit();
+     header('Location: ../../view/main.php');
     } else{
       echo "Fail to Session Save";
       exit();
     }
   }
 }
-echo "Wrong Id or Password";
+else{//로그인 실패?
+  echo "Wrong Id or Password";
+}
+
 ?>

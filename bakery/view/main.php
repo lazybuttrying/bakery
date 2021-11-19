@@ -1,91 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <?php
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        //로그인 안된 경우 nav bar
+        $top = '<div class="navbar">
+        <a href="./intro.html">Log In</a>
+        <a href="./signup.html">Sign Up</a>
+    </div>';
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-
-  <?php
-session_start();
-if (!isset($_SESSION['user_id'])){
-  header('Location: /index.html');
-}
-?>
-
-  <form action="/bakery/api/file/file.php" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" id="file">
-    <input type="submit" value="Upload File" name="submit">
-  </form>
-
-  <form action="/bakery/api/user/logout.php" method="post">
-    <input type="submit" value="Logout" name="submit">
-  </form>
-  
-  <br>
-  
+    } else {
+        //로그인 성공시 nav bar
+        $top = ' <div class="navbar">
+        <a href="../api/user/logout.php">Log Out</a>
+        <a href="./myinfo.php">My info</a>
+    </div>';
+    }
     
-  <form action="">
-  <label for="season">Choose Season:</label>
-  <select name="season">
-      <option value="spring">spring</option>
-      <option value="summer">summer</option>
-      <option value="fall">fall</option>
-      <option value="winter">winter</option>
-  </select>
-  <input type="submit" value="Send" name="submit">
-  </form>
+    ?>
+    <head>
+        <meta charset="utf-8">
+        <title>Data analysis tool for bakery owners</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="mainstyle.css">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    </head>
 
 
-  <p id="result">
-    <li>
-  </p>
-  
-  <br>
-  
-  
-  <form id="edit_pwd" method="post">   
-    <span> 비밀번호 수정이 성공하면 로그인 화면으로<br> 실패하면 해당 화면에 그대로 있게 됩니다. </span>
-    <br>
-    <label for="pwd"> Password </label>
-    <input type="text" name="pwd" /> <br>
-    <label for="pwdcheck"> same Password </label>
-    <input type="text" name="pwdcheck" /> <br>
-    <button type="submit" value="Edit" onclick="edit_pwd()"> Edit </button>
-  </form>
+    <body>
+        <header>
 
+            <div class="header">
+            <h1><a href="./main.php">Data analysis tool for bakery owners</a></h1>
+            <h3>The site is designed to provide a variety of auxiliary data to help bakery owners operate the store by analyzing sales data of the products.</h3>
+            </div>
 
-</body>
+            
+        </header>
 
- <script>
-  $('#edit_pwd').bind('submit', (e) => {
-      e.preventDefault();
-  });
+        <?php 
+        echo $top;
+        ?>
 
-  function edit_pwd() {
-    $.ajax({
-      url: "/bakery/api/user/edit_pwd.php",
-      type: "GET",
-      data: $('#edit_pwd').serialize(),
-      processData: false,
-      contentType: false,
-      cache: false,
-      timeout: 600000,
-      beforeSend: function (xhr) {
-        // pwd != pwdcheck라면 xhr.abort()
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-      },
-      success: function (msg) {
-      },
-      error: function (e) {
-        console.log(e);
-      }
-    })
-  }
-  </script>
-  
+        <hr>
+
+        <div class="list" >
+        <div id = "datasection" class="datasection">
+            <ul style="list-style-type:none;">
+                <li><a href="./inputdata.html">Input your data</a></li>
+                <br>
+                <li><a href="./modifydata.html">Modify your data</a></li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div id = "servicelist" class="servicelist">
+            <ul style="list-style-type: none;">
+                <li><a href="./payhistory.html">Service payment history check</a></li><br>
+                <li><a href="./deliveryarea.php">Customer delivery area map</a></li><br>
+                <li><a href="./recfixmenu.html">Recommend a fixed set menu</a></li><br>
+                <li><a href="./recseason.html">Recommend popular seasonal products</a></li><br>
+                <li><a href="./recday.html">Recommend popular products for each day of the week</a></li><br>
+                <li><a href="./rectime.html">Recommend popular products by time</a></li><br>
+            </ul>
+        </div>
+
+    </body>
 </html>
