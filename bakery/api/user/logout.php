@@ -1,6 +1,6 @@
 <?php
 session_start();
 if (session_destroy()){
-  header('Location: ../../../html2/main.html');
+  header('Location: ../../view/main.html');
 }
 ?>

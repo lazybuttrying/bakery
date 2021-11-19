@@ -50,9 +50,7 @@
         <div class="list" >
         <div id = "datasection" class="datasection">
             <ul style="list-style-type:none;">
-                <li><a href="./inputdata.html">Input your data</a></li>
-                <br>
-                <li><a href="./modifydata.html">Modify your data</a></li>
+                <li><a href="./modifydata.html">Modify your menu</a></li>
             </ul>
         </div>
 
@@ -60,12 +58,12 @@
 
         <div id = "servicelist" class="servicelist">
             <ul style="list-style-type: none;">
-                <li><a href="./payhistory.html">Service payment history check</a></li><br>
-                <li><a href="./deliveryarea2.php">Customer delivery area map</a></li><br>
-                <li><a href="./recfixmenu.html">Recommend a fixed set menu</a></li><br>
-                <li><a href="./recseason.html">Recommend popular seasonal products</a></li><br>
-                <li><a href="./recday.html">Recommend popular products for each day of the week</a></li><br>
-                <li><a href="./rectime.html">Recommend popular products by time</a></li><br>
+                <li><a href="./payhistory.php">Check remain views for service</a></li><br>
+                <li><a href="./deliveryarea.php">Customer delivery area map</a></li><br>
+                <li><a href="./recfixmenu.php">Recommend a fixed set menu</a></li><br>
+                <li><a href="./recseason.php">Recommend popular seasonal products</a></li><br>
+                <li><a href="./recday.php">Recommend popular products for each day of the week</a></li><br>
+                <li><a href="./rectime.php">Recommend popular products by time</a></li><br>
             </ul>
         </div>
 
