@@ -22,7 +22,13 @@ try {
     
     // minus_view_count
     $user->user_id = $_SESSION['user_id'];
-    $user->minus_view_count();
+    $user->minus_view_count();   
+    $user->select_one_user_id();
+    if ($user->view_count<=0){
+        echo "No more view, sorry. BUY BYE";
+        exit();
+    }
+    
 
     // get list
     $result = $order->report_rank($_GET['table'], $_GET['value'], $user->user_id);

@@ -60,7 +60,7 @@
         else{
 
         
-        //map에 띄울 정보
+        //map에 띄울 각 지역(location)별 배달횟수 정보
         $mapList = "SELECT sub.user_id, sub.location_name, count(sub.order_id) as totalDel, sub.latitude, sub.longtitude
         FROM (SELECT o.location_name,o.order_id,o.user_id,d.latitude, d.longtitude
                 FROM `order` AS o
@@ -86,7 +86,7 @@
         else{
             echo "0 results for result";
         }
-        //행정구역별 총 매출액 정보
+        //행정구역별 총 매출액 정보 (District>location)
         $districtList = "SELECT sub.district, sub.location_name, sum(sub.total) as totalSales,sub.user_id
         FROM (select DISTINCT o.user_id,o.order_id, o.location_name, d.district, o.total
             from `order` AS o
