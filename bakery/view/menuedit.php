@@ -96,10 +96,10 @@
                     <input type="text"  placeholder="Within 20 letters..." name="price"><br><br>
                     <label>Category</label>
                     <select name="category">
-                        <option value="Bread" selected="selected">Bread</option>
-                        <option value="Choco">Choco</option>
-                        <option value="Cake">Cake</option>
-                        <option value="Beverage">Beverage</option>
+                        <option value="bread" selected="selected">Bread</option>
+                        <option value="choco">Choco</option>
+                        <option value="cake">Cake</option>
+                        <option value="beverage">Beverage</option>
                     </select><br>
                     <br>
                     <button type="button" class="btnInsert">REGISTER</button>
