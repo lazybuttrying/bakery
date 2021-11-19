@@ -24,7 +24,7 @@ class Order {
 
 
   public function report_rank($type, $input) {
-    $query = ''
+    $query = '';
     switch($type){
         case "season":
             $query = OrderSql::$SELECT_RANK_SEASON;
@@ -36,5 +36,6 @@ class Order {
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':'.$type, $input); 
     $stmt->execute();
-    return $stmt
+    return $stmt;
   }
+}

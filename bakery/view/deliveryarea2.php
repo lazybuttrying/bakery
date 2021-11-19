@@ -48,67 +48,63 @@
 
 <body>
     <?php
-    
-    
-    include_once '../config/Database.php';
-    include_once '../model/User.php';
+        $conn = mysqli_connect(
+        'localhost',
+        'team20',
+        'team20',
+        'team20');
+        if(mysqli_connect_errno()){
+            printf("connected failed");
+            exit();
+        }
+        else{
 
-     // Instantiate DB & connect
-    $database = new Database();
-    $conn = $database->connect();
- 
-    $user = new User($conn);
-
-   
-    try {
-        $conn->beginTransaction();
+        
         //map에 띄울 정보
-        $mapList = 'select sub.user_id, sub.location_name, count(sub.order_id) as totalDel, sub.latitude, sub.longtitude
-        from (SELECT o.location_name,o.order_id,o.user_id,d.latitude, d.longtitude
+        $mapList = "SELECT sub.user_id, sub.location_name, count(sub.order_id) as totalDel, sub.latitude, sub.longtitude
+        FROM (SELECT o.location_name,o.order_id,o.user_id,d.latitude, d.longtitude
                 FROM `order` AS o
                 INNER JOIN `delivery` AS d ON o.location_name = d.location_name
-                WHERE o.user_id = '.$currentUser.'
-                group by o.location_name, o.order_id) as sub
-        group by sub.location_name;';
+                WHERE o.user_id = '{$currentUser}'
+                GROUP BY o.location_name, o.order_id) as sub
+        GROUP BY sub.location_name;";
 
-        $result = $conn->query($mapList);
+        $result = mysqli_query($conn, $mapList);
         $location = array();
-        if($result->num_rows>0){
-            while ($row->fetch_assoc($result)) {
+        if($result){
+            
+            while ($row=mysqli_fetch_assoc($result)) {
                 $x = $row['latitude'];
                 $y = $row['longtitude'];
-                $totalDel = $row['total_del'];
+                $totalDel = $row['totalDel'];
                 $locName = $row['location_name'];
 
                 array_push($location, array("x" => $x, "y" => $y, "totalDel" => $totalDel, "locName" => $locName));
                 
             }
-            $db->commit();
-
         }
         else{
-            throw new Exception("0 result");
+            echo "0 results for result";
         }
         //행정구역별 총 매출액 정보
-        $districtList = 'SELECT sub.district, sub.location_name, sum(sub.total) as totalSales,sub.user_id
+        $districtList = "SELECT sub.district, sub.location_name, sum(sub.total) as totalSales,sub.user_id
         FROM (select DISTINCT o.user_id,o.order_id, o.location_name, d.district, o.total
             from `order` AS o
             INNER JOIN `delivery` AS d ON o.location_name = d.location_name
-            where o.user_id = '.$currentUser.'
+            where o.user_id = '{$currentUser}'
             group by o.location_name, o.order_id
             order by o.order_id) as sub
-        group by sub.district, sub.location_name WITH ROLLUP;';
+        group by sub.district, sub.location_name WITH ROLLUP;";
 
-        $result2 = $conn->query($districtList);
-        if($result2->num_row>0){
-            $table = '<h2>Total Sales by District</h2>
-            <table border="1" width = 500px align = "center">
+        $result2 = mysqli_query($conn, $districtList);
+        if($result2){
+            $table = '<table border="1" width = 500px align = "center">
              <tr align="center">
               <td style="font-size:21px;font-weight:bold;color:orange;">District</td>
               <td style="font-size:21px;font-weight:bold;color:orange;">Total Sales</td>
              </tr>';
 
-            while ($row->fetch_assoc($result2)) {
+            while ($row=mysqli_fetch_assoc($result2)) {
                 if($row['district']!=NULL&&$row['location_name']==NULL){
                     $table = $table.'<tr align="center">
                     <td>'.$row['district'].'</td>
@@ -123,15 +119,10 @@
                 }
                         
             }
-            $db->commit();
         }
         else{
-            throw new Exception("0 result");
-        } 
-    }
-    catch (Exception $e){
-        echo "Failed. Empty data";
-        $db->rollBack();
+            echo "0 results for result2";
+        }
     }
 
     ?>
@@ -208,13 +199,12 @@
 
             </div>
         </div>
-        <div class = "salesTable" style="display:flex;padding-top:10px;">
+        <div class = "salesTable" style="display:flex;padding:50px;">
             <div class="salesTable-in" style="width:1000px;margin:0 auto;">
+                <h2 align=center>Total Sales by District</h2>
                 <?php echo $table?>
             </div>
         </div>
-
-        <input type="submit" value="inquire">
 
     </div>
 
