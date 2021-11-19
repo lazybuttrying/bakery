@@ -10,6 +10,8 @@ class UserSql {
   public static $UPDATE_VIEW_COUNT = "UPDATE user SET view_count=:view_count WHERE user_id=:user_id";
 
   public static $UPDATE_PWD = "UPDATE user SET pwd=:pwd WHERE user_id=:user_id";
+  
+  public static $UPDATE_AUTH = "UPDATE user SET auth=1 WHERE user_id=:user_id";
 
 }
 ?>
