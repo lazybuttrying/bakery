@@ -20,9 +20,19 @@ $menu->category = $_POST['category'];
 $menu->price = $_POST['price']; 
 $menu->user_id = $_SESSION['user_id'];
 
-if ($menu->insert_menu())
-    echo "성공적으로 삽입되었습니다"
-else
-    echo "실패하였습니다"
+// print_r($menu)
+try{
+  $db->beginTransaction();
+  $menu->insert_menu();
+  $db->commit();
+  echo "성공적으로 삽입되었습니다";
+}catch(Exception $e) {
+  echo $e;
+}
+
+$menu = null;
+$db = null;
+
+
 
 ?>
