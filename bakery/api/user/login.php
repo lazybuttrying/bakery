@@ -22,6 +22,7 @@ $db = null; //close connection
 if ($rowCount == 1) {//로그인 성공?
   if ($user->pwd == $_POST['pwd']) {
     $_SESSION['user_id'] = $user->user_id;
+    $_SESSION['auth'] = $user->auth;
     if (isset($_SESSION['user_id'])) {
      header('Location: ../../view/main.php');
     } else{

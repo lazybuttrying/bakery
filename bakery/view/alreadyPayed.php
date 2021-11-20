@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html>
 
+<?php
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        //로그인 안된 경우 nav bar
+        $top = '<div class="navbar">
+            <a href="./intro.html">Log In</a>
+            <a href="./signup.html">Sign Up</a>
+        </div>';
+    }else {
+        //로그인 성공시 nav bar
+        $top = ' <div class="navbar">
+        <a href="../api/user/logout.php">Log Out</a>
+        <a href="./myinfo.php">My info</a>
+    </div>';
+
+    }
+?>
     <head>
         <meta charset="utf-8">
         <title>Data analysis tool for bakery owners</title>
@@ -36,23 +53,7 @@
         </style>
     </head>
     <body>
-        <?php
-
-        session_start();
-        if (!isset($_SESSION['user_id'])) {
-            //로그인 안된 경우 nav bar
-            $top = '<div class="navbar">
-                <a href="./intro.html">Log In</a>
-                <a href="./signup.html">Sign Up</a>
-            </div>';
-        }else {
-            //로그인 성공시 nav bar
-            $top = ' <div class="navbar">
-            <a href="../api/user/logout.php">Log Out</a>
-            <a href="./myinfo.php">My info</a>
-        </div>';
-        }
-
+        <!-- <?php
 
         include_once '../config/Database.php';
         include_once '../model/User.php';
@@ -65,11 +66,8 @@
         $user = new User($db);
         $user->user_id = $_SESSION['user_id'];
         $user->select_one_user_id();
-        if($user->auth==1){
-            header('Location: ./alreadyPayed.php');
-        }
         
-        ?>
+        ?> -->
         <header>
             <div class="header">
             <h1><a href="./main.php">Data analysis tool for bakery owners</a></h1>
@@ -83,52 +81,11 @@
 
         <div class="content">
             <h1>Check remain views</h1>
-            <h3>You can inquire about the number of times your service is available and whether you are paying or not.</h3>
-            <br>
-
-            <table class="payhistory">
-            <tr>
-            <td width="50%"  style="color:orange"> Remaining:</td>
-            <td width="50%" id="value" style="padding-left:50px"><?php echo $user->view_count;?></td>
-            </tr>
-            </table>
-
-            <br>
-            <h3>Do you want to pay extra for the service? </h3>
-            
-            <button type="button">service payment</button>
-            
+            <h2>You have completed payment!   Feel free to use our services.</h2>
+         
+            <button type="button" onClick="location.href='./main.php'">Back</button>
         </div>
 
     </body>
-    <script>
-    
-     
-    $("documnent").ready(function(){
-        $("button").click(function(){
 
-            if (!confirm("Are you sure to pay?"))
-                return false;
-
-            $.ajax({
-                url:"../api/user/update_auth.php",
-                type:"GET",
-                dataType: 'text',
-                contentType: false,
-                cache: false,
-                async:false,
-                success: function (msg) { 
-                    alert(msg);
-                    window.location.href = "./alreadyPayed.php"; 
-                    // 새로고침 해서 새로운 값으로 화면 갱신
-                },
-                error: function (xhr, status, error) {
-                    console.log(xhr + status + error);
-                }
-            });
-         })
-     })
-
-
-    </script>
     </html>

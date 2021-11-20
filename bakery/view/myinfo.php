@@ -73,7 +73,7 @@ if (!isset($_SESSION['user_id'])) {
 
     </header>
 
-    <?php echo $top ?>
+    <?php echo $top; ?>
     <hr>
 
     <div class="content">
