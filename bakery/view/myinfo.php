@@ -57,8 +57,12 @@ if (!isset($_SESSION['user_id'])) {
     } else {
         $isPayed = 'O';
     }
-
-
+    $i=1;
+    $encoded_pwd = "";
+    while($i<=strlen($user->pwd)){
+        $encoded_pwd = $encoded_pwd."*";
+        $i++;
+    }
 
     ?>
 
@@ -93,13 +97,9 @@ if (!isset($_SESSION['user_id'])) {
             <tr>
                 <td width="5%" align="center" height=35px>*</td>
                 <td width="30%">PW</td>
-                <td><input class="form-control" type="password" name="pwd" id="password" placeholder="********" required /></td>
+                <td><?php echo $encoded_pwd; ?></td>
             </tr>
-            <tr>
-                <td width="5%" align="center" height=35px>*</td>
-                <td width="30%">Repeat PW</td>
-                <td><input class="form-control" type="password" name="pwd" id="passwordRepeat" placeholder="********" required /></td>
-            </tr>
+
 
             <tr>
                 <td width="5%" align="center" height=35px>*</td>
@@ -119,6 +119,6 @@ if (!isset($_SESSION['user_id'])) {
 
         <br>
         
-        <button type="submit" class="btn btn-black" onclick="login()" >Change Password</button>
+        <button type="button" onClick="location.href='./main.php'">Back to main</button>
 
     </div>

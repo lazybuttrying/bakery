@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <html>
+<?php
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        //로그인 안된 경우 nav bar
+        $top = '<div class="navbar">
+            <a href="./intro.html">Log In</a>
+            <a href="./signup.html">Sign Up</a>
+        </div>';
+    }else {
+        //로그인 성공시 nav bar
+        $top = ' <div class="navbar">
+        <a href="../api/user/logout.php">Log Out</a>
+        <a href="./myinfo.php">My info</a>
+    </div>';
+    }
+?>
     <head>
         <meta charset="utf-8">
         <title>Data analysis tool for bakery owners</title>
@@ -62,29 +78,21 @@
 
 
     <body>
-        <?php
-        session_start();
-        if (!isset($_SESSION['user_id'])){
-          header('Location:./intro.html');
-        }
-        ?>
+
+
         <header>
             <div class="header">
-            <h1><a href="./main.html">Data analysis tool for bakery owners</a></h1>
+            <h1><a href="./main.php">Data analysis tool for bakery owners</a></h1>
             <h3>The site is designed to provide a variety of auxiliary data to help bakery owners operate the store by analyzing sales data of the products.</h3>
             </div>
 
         </header>
-
-        <div class="navbar">
-            <a href="./intro.html">Log Out</a>
-            <a href="./myinfo.html">My info</a>
-        </div>
+        <?php echo $top;?>
         <hr>
 
         <div class = "content">
             
-            <h1>Modify your data</h1>
+            <h1>Modify your menu</h1>
             
             <div class="inputdata">
                 <h2 style="margin-bottom: 1em">Insert new product data</h2>
@@ -112,12 +120,7 @@
             <div class="container">
                 <h2>Product list</h2>
                 <table id="list" class="table table-hover">
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Category</th>
-                        <th>Delete</th>
-                    </tr>                 
+                    <tr><th>Name</th><th>Price</th><th>Category</th><th>Delete</th></tr>                 
                 </table>
             </div>
         </div>
@@ -127,7 +130,7 @@
     
     function menulist(){
         $.ajax({
-            url:"/bakery/api/menu/list.php",
+            url:"../api/menu/list.php",
             type:"GET",
             data: "JSON", 
             processData: false,
@@ -136,7 +139,7 @@
 
             success: function( msg ){
                 msg = JSON.parse(msg)
-                var html = "";
+                var html = "<tr><th>Name</th><th>Price</th><th>Category</th><th>Delete</th></tr>";
                 $("#list").html("");
                 for(var i=0; i<Object.keys(msg).length; i++){
                     html += '<tr> <td>'+msg[i]['menu_name']+'</td><td>'+msg[i]['category']+'</td><td>'+msg[i]['price'];
@@ -164,7 +167,7 @@
         let btn =  $(this)[0];
         if (confirm("Are you sure to view? it will decrease your view count")){
             $.ajax({
-                url: "/bakery/api/menu/delete.php"+"?menu_name="+target,
+                url: "../api/menu/delete.php"+"?menu_name="+target,
                 type: "GET",
                 processData: false,
                 contentType: "JSON",
@@ -187,7 +190,7 @@
     // 삽입
     $(document).on("click", ".btnInsert", function() { 
         $.ajax({
-                url: "/bakery/api/menu/insert.php",
+                url: "../api/menu/insert.php",
                 type: "POST",
                 data: $("#insertMenu").serialize(),
                 processData: false,

@@ -61,8 +61,9 @@
                 <li><a href="./payhistory.php">Check remain views for service</a></li><br>
                 <li><a href="./deliveryarea.php">Customer delivery area map</a></li><br>
                 <!-- <li><a href="./recfixmenu.php">Recommend a fixed set menu</a></li><br> -->
-                <li><a href="./recseason.php">Recommend popular seasonal products</a></li><br>
-                <li><a href="./recday.php">Recommend popular products for each day of the week</a></li><br>
+                <li><a href="./recyears.php">Recommend popular products by year</a></li><br>
+                <li><a href="./recseason.php">Recommend popular products by season</a></li><br>
+                <li><a href="./recday.php">Recommend popular products by day of the week</a></li><br>
                 <li><a href="./rectime.php">Recommend popular products by time</a></li><br>
             </ul>
         </div>

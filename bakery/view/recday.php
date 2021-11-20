@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <title>Data analysis tool for bakery owners</title>
@@ -18,14 +19,39 @@
     </head>
     <body>
         <?php
+
         session_start();
-        if (!isset($_SESSION['user_id'])){
-          header('Location: /index.html');
+        if (!isset($_SESSION['user_id'])) {
+            //로그인 안된 경우 nav bar
+            $top = '<div class="navbar">
+                <a href="./intro.html">Log In</a>
+                <a href="./signup.html">Sign Up</a>
+            </div>';
+        }else {
+            //로그인 성공시 nav bar
+            $top = ' <div class="navbar">
+            <a href="../api/user/logout.php">Log Out</a>
+            <a href="./myinfo.php">My info</a>
+        </div>';
         }
+
+
+        include_once '../config/Database.php';
+        include_once '../model/User.php';
+
+        // Instantiate DB & connect
+        $database = new Database();
+        $db = $database->connect();
+
+        // Instantiate blog post object
+        $user = new User($db);
+        $user->user_id = $_SESSION['user_id'];
+        $user->select_one_user_id();
+
         ?>
         <header>
             <div class="header">
-            <h1><a href="./main.html">Data analysis tool for bakery owners</a></h1>
+            <h1><a href="./main.php">Data analysis tool for bakery owners</a></h1>
             <h3>The site is designed to provide a variety of auxiliary data to help bakery owners operate the store by analyzing sales data of the products.</h3>
             </div>
 
@@ -49,14 +75,14 @@
                     width : 100px;
                     margin-right : 20px;
                 }
+                #list{
+                    padding-bottom: 100px;
+                }
     
             </style>
         </header>
 
-        <div class="navbar">
-            <a href="./intro.html">Log Out</a>
-            <a href="./myinfo.html">My info</a>
-        </div>
+        <?php echo $top;?>
 
         <hr>
 
@@ -82,11 +108,7 @@
             <div class="container">
                 <h2>Product list</h2>
                 <table id="list" class="table table-hover">
-                    <tr>
-                        <th>Ranking</th>
-                        <th>Product</th>
-                        <th>Count</th>
-                    </tr>
+      
                 </table>
             </div>
 
@@ -97,12 +119,15 @@
      
     $("documnent").ready(function(){
         $("#day button").click(function(){
-
-            if (!confirm("Are you sure to view? the count will decrease"))
+            //payed 된 멤버일 시 no alert
+            var isPayed = <?php echo $user->auth;?>;
+            if(isPayed==0){
+                if (!confirm("Are you sure to view? the count will decrease"))
                 return false;
-
+            }
+            
             $.ajax({
-            url:"/bakery/api/report/report.php"+"?table=date&value="+document.querySelector("select").value,
+            url:"../api/report/report.php"+"?table=date&value="+document.querySelector("select").value,
             type:"GET",
             dataType: 'json',
             contentType: false,
@@ -116,7 +141,7 @@
                 }
                 msg = msg["data"];
                 $("#list").html("");
-                var html = "";
+                var html = '<tr><th>Ranking</th><th>Product</th><th>Count</th></tr>';
                 for(var i=0; i<Object.keys(msg).length; i++){
                     html += '<tr> <td class="rank">'+msg[i]['ranking'];
                     html +='</td><td>'+msg[i]['menu_name']+'</td><td>'+msg[i]['sum_count']+'</td> </tr>';   

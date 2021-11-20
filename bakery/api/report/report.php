@@ -13,9 +13,6 @@ $user = new User($db);
 $menu = new Menu($db);
 
 session_start();
-if (!isset($_SESSION['user_id'])){
-  header('Location: /index.html');
-}
 
 try {
     $arr = ["data"=>[], "msg"=>""];
@@ -26,14 +23,16 @@ try {
     $user->user_id = $_SESSION['user_id'];
  
     $user->select_one_user_id();
-    if ($user->view_count<=0){
-        $arr["msg"] = "No more view, sorry. BUY BYE";
-        echo json_encode($arr, JSON_FORCE_OBJECT);
-        $db->rollBack();
-        exit();
-    }   
-     $user->minus_view_count();  
-    
+
+    if($user->auth==0){
+        if ($user->view_count<=0){
+            $arr["msg"] = "No more view, sorry. BUY BYE";
+            echo json_encode($arr, JSON_FORCE_OBJECT);
+            $db->rollBack();
+            exit();
+        }
+        $user->minus_view_count();  
+    } 
 
     // get list
     $result = $order->report_rank($_GET['table'], $_GET['value'], $user->user_id);
