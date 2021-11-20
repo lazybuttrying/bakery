@@ -84,7 +84,8 @@ class User {
   // -1 on view count
   public function minus_view_count(){
     $stmt = $this->conn->prepare(UserSql::$UPDATE_VIEW_COUNT);
-    $stmt->bindParam(':view_count', --$this->view_count);
+    $this->view_count--;
+    $stmt->bindParam(':view_count', $this->view_count);
     $stmt->bindParam(':user_id', $this->user_id);
     
     if ($stmt->execute())
@@ -103,8 +104,30 @@ class User {
       return true;
     echo "Error: ".$stmt->error;
     return false;
-
   }
+    // update auth
+  public function update_auth(){
+    $stmt = $this->conn->prepare(UserSql::$UPDATE_AUTH);
+    $stmt->bindParam(':user_id', $this->user_id);
+    
+    if ($stmt->execute())
+      return true;
+    echo "Error: ".$stmt->error;
+    return false;
+  }
+
+    // Set view count to 5
+    public function reback_view_count(){
+      $stmt = $this->conn->prepare(UserSql::$UPDATE_VIEW_COUNT);
+      $this->view_count=5;
+      $stmt->bindParam(':view_count', $this->view_count);
+      $stmt->bindParam(':user_id', $this->user_id);
+      
+      if ($stmt->execute())
+        return true;
+      echo "Error: ".$stmt->error;
+      return false;
+    }
 }
 
 ?>

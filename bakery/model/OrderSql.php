@@ -34,21 +34,3 @@ class OrderSql {
         ORDER BY `rank`; ";
 }
 ?>
-
-<!-- SELECT o.menu_id, SUM(o.count) AS sum_count, 
-    DENSE_RANK() OVER (PARTITION BY t.day_of_week ORDER BY sum_count DESC) AS `ranking`
-FROM `order` o 
-LEFT JOIN `date` t ON o.order_detail_id=t.order_detail_id 
-WHERE o.user_id = "user01"
-GROUP BY t.day_of_week, o.menu_id 
-HAVING t.day_of_week='thu'
-ORDER BY `ranking`; -->
-<!-- 
-SELECT o.menu_id, SUM(o.count) AS sum_count, 
-    DENSE_RANK() OVER (PARTITION BY t.day_of_week ORDER BY sum_count DESC)
-FROM `order` o 
-LEFT JOIN `date` t ON o.order_detail_id=t.order_detail_id 
-WHERE o.user_id = "user01"
-GROUP BY t.day_of_week, o.menu_id 
-HAVING t.day_of_week='thu'
-ORDER BY DENSE_RANK() OVER (PARTITION BY t.day_of_week ORDER BY sum_count DESC); -->

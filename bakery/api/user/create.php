@@ -52,7 +52,7 @@ try {
   $db->rollBack();
 }
 
-
+$user = null;
 $db = null; //close connection
 
 ?>
