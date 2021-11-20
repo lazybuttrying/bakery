@@ -66,7 +66,10 @@
                 <li><a href="./recday.php">Recommend popular products by day of the week</a></li><br>
                 <li><a href="./rectime.php">Recommend popular products by time</a></li><br>
             </ul>
-        </div>
+        </div>        
 
+        <hr>
+        <p style="text-align: center; font-size: medium;">Contact Us : bakeryAnalysis@gmail.com</p>
+        
     </body>
 </html>
