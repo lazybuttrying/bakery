@@ -109,7 +109,7 @@ if (!isset($_SESSION['user_id'])) {
 
             <tr>
                 <td width="5%" align="center" height=35px>*</td>
-                <td width="30%">Is Payed</td>
+                <td width="30%">Is Paid</td>
                 <td><?php echo $isPayed; ?></td>
             </tr>
 
